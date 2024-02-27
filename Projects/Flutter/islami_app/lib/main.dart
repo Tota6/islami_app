@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:islami_app/pages/hadeth_page/page/hadeth_details_page.dart';
 import 'package:islami_app/pages/home_page/home_page.dart';
 import 'package:islami_app/pages/quran_page/pages/sura_details.dart';
 import 'package:islami_app/pages/splash_page/splash_page.dart';
 
 void main() {
+  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -50,7 +52,8 @@ class MyApp extends StatelessWidget {
       routes: {
         SplashPage.routeName: (_) => const SplashPage(),
         HomePage.routeName: (_) => const HomePage(),
-        SuraDetailsPage.routeName: (_) => const SuraDetailsPage()
+        SuraDetailsPage.routeName: (_) => const SuraDetailsPage(),
+        HadethDetailsPage.routeName: (_) => const HadethDetailsPage(),
       },
       initialRoute: HomePage.routeName,
       home: const Directionality(

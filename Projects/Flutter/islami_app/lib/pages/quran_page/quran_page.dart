@@ -112,30 +112,32 @@ class QuranPage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Center(
-          child: Image.asset("assets/images/qur2an_screen_logo.png"),
-        ),
-        Expanded(
-          child: ListView.separated(
-            separatorBuilder: (_, __) => Container(
-              margin: const EdgeInsets.symmetric(horizontal: 50),
-              width: double.infinity,
-              height: 2,
-              color: Color(0xffB7935F),
-            ),
-            itemBuilder: (context, index) => SuraNameWidget(
-              suraModel: SuraModel(
-                suraName: suraName[index],
-                index: index,
+    return suraName.isEmpty
+        ? const CircularProgressIndicator()
+        : Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Center(
+                child: Image.asset("assets/images/qur2an_screen_logo.png"),
               ),
-            ),
-            itemCount: suraName.length,
-          ),
-        ),
-      ],
-    );
+              Expanded(
+                child: ListView.separated(
+                  separatorBuilder: (_, __) => Container(
+                    margin: const EdgeInsets.symmetric(horizontal: 50),
+                    width: double.infinity,
+                    height: 2,
+                    color: const Color(0xffB7935F),
+                  ),
+                  itemBuilder: (context, index) => SuraNameWidget(
+                    suraModel: SuraModel(
+                      suraName: suraName[index],
+                      index: index,
+                    ),
+                  ),
+                  itemCount: suraName.length,
+                ),
+              ),
+            ],
+          );
   }
 }
