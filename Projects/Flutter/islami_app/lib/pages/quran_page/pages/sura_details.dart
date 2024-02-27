@@ -49,12 +49,14 @@ class _SuraDetailsPageState extends State<SuraDetailsPage> {
                           ),
                           margin: const EdgeInsets.symmetric(horizontal: 100),
                           decoration: const BoxDecoration(
-                              border: Border(
-                                  bottom: BorderSide(
-                            color: Colors.black,
-                            width:
-                                2.0, // This would be the width of the underline
-                          ))),
+                            border: Border(
+                              bottom: BorderSide(
+                                color: Colors.black,
+                                width:
+                                    2.0, // This would be the width of the underline
+                              ),
+                            ),
+                          ),
                           child: Padding(
                             padding: const EdgeInsets.all(10.0),
                             child: Row(
@@ -102,9 +104,7 @@ class _SuraDetailsPageState extends State<SuraDetailsPage> {
         await rootBundle.loadString("assets/assets/${index + 1}.txt");
     List<String> suraLines = fileContent.split("/n");
     verses = suraLines;
-
     for (int i = 0; i <= suraLines.length; i++) {
-      print(verses[i]);
       setState(
         () {},
       );
