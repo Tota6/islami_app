@@ -21,21 +21,38 @@ class _HadethPageState extends State<HadethPage> {
     return ahadeth.isEmpty
         ? const Center(child: CircularProgressIndicator())
         : Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              Center(
-                child: Image.asset("assets/images/hadeth_logo.png"),
+              Image.asset(
+                "assets/images/hadeth_logo.png",
+                scale: 0.9,
+              ),
+              const Divider(
+                thickness: 3,
+                color: Color(0xffB7935F),
+              ),
+              const Center(
+                child: Text(
+                  "احاديث",
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                    fontSize: 32,
+                  ),
+                ),
+              ),
+              const Divider(
+                thickness: 3,
+                color: Color(0xffB7935F),
+              ),
+              SizedBox(
+                height: 20,
               ),
               Expanded(
-                child: ListView.separated(
-                  separatorBuilder: (_, __) => Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 50),
-                    width: double.infinity,
-                    height: 2,
-                    color: const Color(0xffB7935F),
+                child: ListView.builder(
+                  itemBuilder: (context, index) => Padding(
+                    padding: const EdgeInsets.all(10.0),
+                    child: HadethNameWidget(hadethModel: ahadeth[index]),
                   ),
-                  itemBuilder: (context, index) =>
-                      HadethNameWidget(hadethModel: ahadeth[index]),
                   itemCount: ahadeth.length,
                 ),
               ),
@@ -43,7 +60,9 @@ class _HadethPageState extends State<HadethPage> {
           );
   }
 
+// reading file from text file that contains hadeth
   void readFileDetails() async {
+    // but th file content inside the for loop to check the no of hadeth text file that read
     for (int i = 0; i < 50; i++) {
       String fileContent =
           await rootBundle.loadString("assets/quran/hadeth/h${i + 1}.txt");

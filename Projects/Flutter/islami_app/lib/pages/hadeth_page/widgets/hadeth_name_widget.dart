@@ -1,8 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/pages/hadeth_page/models/hadeth_model.dart';
-import 'package:islami_app/pages/quran_page/models/sura_model.dart';
-import 'package:islami_app/pages/quran_page/pages/sura_details.dart';
-
 import '../page/hadeth_details_page.dart';
 
 class HadethNameWidget extends StatelessWidget {
@@ -14,7 +11,7 @@ class HadethNameWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
+    return GestureDetector(
       onTap: () {
         Navigator.of(context).pushNamed(
           HadethDetailsPage.routeName,

@@ -38,7 +38,7 @@ class _HadethDetailsPageState extends State<HadethDetailsPage> {
                       bottom:
                           4, // This can be the space you need between text and underline
                     ),
-                    margin: const EdgeInsets.symmetric(horizontal: 70),
+                    margin: const EdgeInsets.symmetric(horizontal: 20),
                     decoration: const BoxDecoration(
                       border: Border(
                         bottom: BorderSide(
@@ -55,12 +55,12 @@ class _HadethDetailsPageState extends State<HadethDetailsPage> {
                         children: [
                           Text(
                             arg.hadethName,
+                            textAlign: TextAlign.center,
                             style: const TextStyle(
                               fontSize: 25,
                               fontWeight: FontWeight.bold,
                             ),
                           ),
-                          const Icon(Icons.play_circle)
                         ],
                       ),
                     ),
