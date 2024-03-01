@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/pages/hadeth_page/models/hadeth_model.dart';
 
+import '../../../utilities/app_colors.dart';
+
 class HadethDetailsPage extends StatefulWidget {
   static String routeName = "HadethDetailsPage";
   const HadethDetailsPage({super.key});
@@ -16,18 +18,30 @@ class _HadethDetailsPageState extends State<HadethDetailsPage> {
     return Stack(
       children: [
         Image.asset(
-          "assets/images/default_bg.png",
+          AppColors.isDarkSelected
+              ? "assets/images/dark_bg.png"
+              : "assets/images/default_bg.png",
           width: double.infinity,
           height: double.infinity,
           fit: BoxFit.fill,
         ),
         Scaffold(
           appBar: AppBar(
-            title: const Text("اسلامى"),
+            iconTheme: Theme.of(context).iconTheme,
+            title: Text(
+              "اسلامى",
+              style: TextStyle(
+                  color: AppColors.isDarkSelected
+                      ? AppColors.whiteColor
+                      : AppColors.lightTextColor),
+            ),
           ),
           body: Directionality(
             textDirection: TextDirection.rtl,
             child: Card(
+              color: AppColors.isDarkSelected
+                  ? AppColors.darkNavBarColor
+                  : AppColors.whiteColor,
               margin: const EdgeInsets.all(20),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50)),
@@ -56,10 +70,7 @@ class _HadethDetailsPageState extends State<HadethDetailsPage> {
                           Text(
                             arg.hadethName,
                             textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontSize: 25,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            style: Theme.of(context).textTheme.titleMedium,
                           ),
                         ],
                       ),

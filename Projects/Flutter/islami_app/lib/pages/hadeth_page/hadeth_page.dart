@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_app/pages/hadeth_page/models/hadeth_model.dart';
 import 'package:islami_app/pages/hadeth_page/widgets/hadeth_name_widget.dart';
+import 'package:islami_app/utilities/app_colors.dart';
+import 'package:islami_app/utilities/app_theme.dart';
 
 class HadethPage extends StatefulWidget {
   const HadethPage({super.key});
@@ -27,25 +29,24 @@ class _HadethPageState extends State<HadethPage> {
                 "assets/images/hadeth_logo.png",
                 scale: 0.9,
               ),
-              const Divider(
+              Divider(
                 thickness: 3,
-                color: Color(0xffB7935F),
+                color: AppColors.isDarkSelected
+                    ? AppColors.darkSecondaryColor
+                    : AppColors.lightPrimaryColor,
               ),
-              const Center(
-                child: Text(
-                  "احاديث",
-                  style: TextStyle(
-                    fontWeight: FontWeight.bold,
-                    fontSize: 32,
-                  ),
-                ),
+              Center(
+                child: Text("احاديث",
+                    style: Theme.of(context).textTheme.titleMedium),
               ),
-              const Divider(
+              Divider(
                 thickness: 3,
-                color: Color(0xffB7935F),
+                color: AppColors.isDarkSelected
+                    ? AppColors.darkSecondaryColor
+                    : AppColors.lightPrimaryColor,
               ),
-              SizedBox(
-                height: 20,
+              const SizedBox(
+                height: 10,
               ),
               Expanded(
                 child: ListView.builder(

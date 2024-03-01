@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:islami_app/utilities/app_colors.dart';
 
 class SebhaPage extends StatefulWidget {
   const SebhaPage({super.key});
@@ -33,17 +34,21 @@ class _SebhaPageState extends State<SebhaPage> {
                       top: MediaQuery.of(context).size.height * 0.086),
                   child: Transform.rotate(
                       angle: angle,
-                      child: Image.asset("assets/images/body_sebha_logo.png")),
+                      child: Image.asset(AppColors.isDarkSelected
+                          ? "assets/images/body_sebha_dark.png"
+                          : "assets/images/body_sebha_logo.png")),
                 ),
-                Image.asset("assets/images/head_sebha_logo.png"),
+                Image.asset(AppColors.isDarkSelected
+                    ? "assets/images/head_sebha_dark.png"
+                    : "assets/images/head_sebha_logo.png"),
               ],
             ),
           ),
-          const Padding(
-            padding: EdgeInsets.all(20.0),
+          Padding(
+            padding: const EdgeInsets.all(20.0),
             child: Text(
               "عدد التسبيحات",
-              style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold),
+              style: Theme.of(context).textTheme.headlineLarge,
             ),
           ),
           Padding(
@@ -52,10 +57,12 @@ class _SebhaPageState extends State<SebhaPage> {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: const Color(0xffCAB597)),
+                  color: AppColors.isDarkSelected
+                      ? AppColors.darkNavBarColor
+                      : AppColors.lightSecondaryColor),
               child: Text(
                 counter.toString(),
-                style: const TextStyle(fontSize: 25),
+                style: Theme.of(context).textTheme.headlineLarge,
               ),
             ),
           ),
@@ -70,10 +77,12 @@ class _SebhaPageState extends State<SebhaPage> {
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(40),
-                    color: const Color(0xffB7935F)),
+                    color: AppColors.isDarkSelected
+                        ? AppColors.darkSecondaryColor
+                        : AppColors.lightPrimaryColor),
                 child: Text(
                   tasbehatList[index],
-                  style: const TextStyle(fontSize: 25, color: Colors.white),
+                  style: Theme.of(context).textTheme.headlineMedium,
                 ),
               ),
             ),

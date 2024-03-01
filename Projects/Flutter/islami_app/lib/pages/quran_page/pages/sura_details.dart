@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_app/pages/quran_page/models/sura_model.dart';
+import 'package:islami_app/utilities/app_colors.dart';
+import 'package:islami_app/utilities/app_theme.dart';
 
 class SuraDetailsPage extends StatefulWidget {
   static String routeName = "SuraDetailsPage  ";
@@ -25,18 +27,30 @@ class _SuraDetailsPageState extends State<SuraDetailsPage> {
         : Stack(
             children: [
               Image.asset(
-                "assets/images/default_bg.png",
+                AppColors.isDarkSelected
+                    ? "assets/images/dark_bg.png"
+                    : "assets/images/default_bg.png",
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.fill,
               ),
               Scaffold(
                 appBar: AppBar(
-                  title: const Text("اسلامى"),
+                  iconTheme: Theme.of(context).iconTheme,
+                  title: Text(
+                    "اسلامى",
+                    style: TextStyle(
+                        color: AppColors.isDarkSelected
+                            ? AppColors.whiteColor
+                            : AppColors.lightTextColor),
+                  ),
                 ),
                 body: Directionality(
                   textDirection: TextDirection.rtl,
                   child: Card(
+                    color: AppColors.isDarkSelected
+                        ? AppColors.darkNavBarColor
+                        : AppColors.whiteColor,
                     margin: const EdgeInsets.all(20),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50)),
@@ -48,10 +62,12 @@ class _SuraDetailsPageState extends State<SuraDetailsPage> {
                                 4, // This can be the space you need between text and underline
                           ),
                           margin: const EdgeInsets.symmetric(horizontal: 100),
-                          decoration: const BoxDecoration(
+                          decoration: BoxDecoration(
                             border: Border(
                               bottom: BorderSide(
-                                color: Colors.black,
+                                color: AppColors.isDarkSelected
+                                    ? AppColors.darkSecondaryColor
+                                    : AppColors.lightPrimaryColor,
                                 width:
                                     2.0, // This would be the width of the underline
                               ),
@@ -64,12 +80,16 @@ class _SuraDetailsPageState extends State<SuraDetailsPage> {
                               children: [
                                 Text(
                                   arg.suraName,
-                                  style: const TextStyle(
-                                    fontSize: 25,
-                                    fontWeight: FontWeight.bold,
-                                  ),
+                                  style: AppColors.isDarkSelected
+                                      ? AppThemeData
+                                          .darkTheme.textTheme.titleMedium
+                                      : AppThemeData
+                                          .lightTheme.textTheme.titleMedium,
                                 ),
-                                const Icon(Icons.play_circle)
+                                Icon(
+                                  Icons.play_circle,
+                                  color: AppColors.darkSecondaryColor,
+                                )
                               ],
                             ),
                           ),
@@ -81,10 +101,11 @@ class _SuraDetailsPageState extends State<SuraDetailsPage> {
                               alignment: Alignment.center,
                               child: Text(
                                 verses[index],
-                                style: const TextStyle(
-                                  fontWeight: FontWeight.w400,
-                                  fontSize: 20,
-                                ),
+                                style: AppColors.isDarkSelected
+                                    ? AppThemeData
+                                        .darkTheme.textTheme.bodyMedium
+                                    : AppThemeData
+                                        .lightTheme.textTheme.bodyMedium,
                               ),
                             ),
                             itemCount: verses.length,
