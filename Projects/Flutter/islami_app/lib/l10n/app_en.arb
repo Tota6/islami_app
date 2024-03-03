@@ -6,5 +6,9 @@
 "settings_page":"Settings",
 "appBar_title":"Islami",
 "theme":"Theme",
-"language":"Language"
+"language":"Language",
+"english":"English",
+"arabic":"Arabic",
+"light_mood":"Light Mood",
+"dark_mood":"Dark Mood"
 }

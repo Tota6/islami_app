@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/pages/hadeth_page/models/hadeth_model.dart';
+import 'package:islami_app/provider/settings_provider.dart';
+import 'package:provider/provider.dart';
 
 import '../../../utilities/app_colors.dart';
 
@@ -15,12 +17,11 @@ class _HadethDetailsPageState extends State<HadethDetailsPage> {
   @override
   Widget build(BuildContext context) {
     HadethModel arg = ModalRoute.of(context)?.settings.arguments as HadethModel;
+    var provider = Provider.of<SettingProvider>(context);
     return Stack(
       children: [
         Image.asset(
-          AppColors.isDarkSelected
-              ? "assets/images/dark_bg.png"
-              : "assets/images/default_bg.png",
+          provider.changeBackground(),
           width: double.infinity,
           height: double.infinity,
           fit: BoxFit.fill,
@@ -31,17 +32,18 @@ class _HadethDetailsPageState extends State<HadethDetailsPage> {
             title: Text(
               "اسلامى",
               style: TextStyle(
-                  color: AppColors.isDarkSelected
-                      ? AppColors.whiteColor
-                      : AppColors.lightTextColor),
+                color: provider.currentTheme == ThemeMode.light
+                    ? AppColors.lightTextColor
+                    : AppColors.whiteColor,
+              ),
             ),
           ),
           body: Directionality(
             textDirection: TextDirection.rtl,
             child: Card(
-              color: AppColors.isDarkSelected
-                  ? AppColors.darkNavBarColor
-                  : AppColors.whiteColor,
+              color: provider.currentTheme == ThemeMode.light
+                  ? AppColors.whiteColor
+                  : AppColors.darkNavBarColor,
               margin: const EdgeInsets.all(20),
               shape: RoundedRectangleBorder(
                   borderRadius: BorderRadius.circular(50)),
@@ -56,9 +58,9 @@ class _HadethDetailsPageState extends State<HadethDetailsPage> {
                     decoration: BoxDecoration(
                       border: Border(
                         bottom: BorderSide(
-                          color: AppColors.isDarkSelected
-                              ? AppColors.darkSecondaryColor
-                              : AppColors.lightPrimaryColor,
+                          color: provider.currentTheme == ThemeMode.light
+                              ? AppColors.lightPrimaryColor
+                              : AppColors.darkSecondaryColor,
                           width:
                               2.0, // This would be the width of the underline
                         ),

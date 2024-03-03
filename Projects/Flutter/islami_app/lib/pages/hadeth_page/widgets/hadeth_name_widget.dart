@@ -25,10 +25,7 @@ class HadethNameWidget extends StatelessWidget {
         alignment: Alignment.center,
         child: Text(
           hadethModel.hadethName,
-          style: const TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 25,
-          ),
+          style: Theme.of(context).textTheme.headlineMedium,
         ),
       ),
     );

@@ -5,5 +5,9 @@
  "settings_page":"الاعدادات",
  "appBar_title":"اسلامى",
  "theme":"النمط",
- "language":"اللغه"
+ "language":"اللغه",
+ "english":"الانجليزيه",
+ "arabic":"العربيه",
+ "light_mood":"النمط النهارى",
+ "dark_mood":"النمط الليلى"
  }

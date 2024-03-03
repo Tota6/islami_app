@@ -60,8 +60,8 @@ class _SettingPageState extends State<SettingPage> {
                             top: 10.0, left: 20, right: 20, bottom: 10),
                         child: Text(
                           provider.currentTheme == ThemeMode.light
-                              ? "Light"
-                              : "Dark",
+                              ? AppLocalizations.of(context)!.light_mood
+                              : AppLocalizations.of(context)!.dark_mood,
                           style: TextStyle(
                               color: provider.currentTheme == ThemeMode.light
                                   ? AppColors.lightTextColor
@@ -125,8 +125,8 @@ class _SettingPageState extends State<SettingPage> {
                         padding: const EdgeInsets.all(20.0),
                         child: Text(
                           provider.currentLanguage == "en"
-                              ? "English"
-                              : "Arabic",
+                              ? AppLocalizations.of(context)!.english
+                              : AppLocalizations.of(context)!.arabic,
                           style: TextStyle(
                             color: provider.currentTheme == ThemeMode.light
                                 ? AppColors.lightTextColor
