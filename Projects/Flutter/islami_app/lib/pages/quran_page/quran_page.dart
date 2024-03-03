@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/pages/quran_page/models/sura_model.dart';
 import 'package:islami_app/pages/quran_page/widgets/sura_name_widget.dart';
+import 'package:islami_app/provider/settings_provider.dart';
 import 'package:islami_app/utilities/app_colors.dart';
+import 'package:provider/provider.dart';
 
 class QuranPage extends StatelessWidget {
   const QuranPage({super.key});
@@ -113,6 +115,7 @@ class QuranPage extends StatelessWidget {
   ];
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SettingProvider>(context);
     return suraName.isEmpty
         ? const CircularProgressIndicator()
         : Column(
@@ -127,9 +130,9 @@ class QuranPage extends StatelessWidget {
                     margin: const EdgeInsets.symmetric(horizontal: 50),
                     width: double.infinity,
                     height: 2,
-                    color: AppColors.isDarkSelected
-                        ? AppColors.darkSecondaryColor
-                        : AppColors.lightPrimaryColor,
+                    color: provider.currentTheme == ThemeMode.light
+                        ? AppColors.lightPrimaryColor
+                        : AppColors.darkSecondaryColor,
                   ),
                   itemBuilder: (context, index) => SuraNameWidget(
                     suraModel: SuraModel(

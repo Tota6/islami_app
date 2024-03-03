@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_app/pages/quran_page/models/sura_model.dart';
+import 'package:islami_app/provider/settings_provider.dart';
 import 'package:islami_app/utilities/app_colors.dart';
 import 'package:islami_app/utilities/app_theme.dart';
+import 'package:provider/provider.dart';
 
 class SuraDetailsPage extends StatefulWidget {
-  static String routeName = "SuraDetailsPage  ";
+  static String routeName = "SuraDetailsPage ";
 
   const SuraDetailsPage({super.key});
 
@@ -19,6 +21,7 @@ class _SuraDetailsPageState extends State<SuraDetailsPage> {
   @override
   Widget build(BuildContext context) {
     SuraModel arg = ModalRoute.of(context)?.settings.arguments as SuraModel;
+    var provider = Provider.of<SettingProvider>(context);
     if (verses.isEmpty) {
       readFileDetails(arg.index);
     }
@@ -27,9 +30,7 @@ class _SuraDetailsPageState extends State<SuraDetailsPage> {
         : Stack(
             children: [
               Image.asset(
-                AppColors.isDarkSelected
-                    ? "assets/images/dark_bg.png"
-                    : "assets/images/default_bg.png",
+                provider.changeBackground(),
                 width: double.infinity,
                 height: double.infinity,
                 fit: BoxFit.fill,
@@ -40,17 +41,18 @@ class _SuraDetailsPageState extends State<SuraDetailsPage> {
                   title: Text(
                     "اسلامى",
                     style: TextStyle(
-                        color: AppColors.isDarkSelected
-                            ? AppColors.whiteColor
-                            : AppColors.lightTextColor),
+                      color: provider.currentTheme == ThemeMode.light
+                          ? AppColors.lightTextColor
+                          : AppColors.whiteColor,
+                    ),
                   ),
                 ),
                 body: Directionality(
                   textDirection: TextDirection.rtl,
                   child: Card(
-                    color: AppColors.isDarkSelected
-                        ? AppColors.darkNavBarColor
-                        : AppColors.whiteColor,
+                    color: provider.currentTheme == ThemeMode.light
+                        ? AppColors.whiteColor
+                        : AppColors.darkNavBarColor,
                     margin: const EdgeInsets.all(20),
                     shape: RoundedRectangleBorder(
                         borderRadius: BorderRadius.circular(50)),
@@ -65,9 +67,9 @@ class _SuraDetailsPageState extends State<SuraDetailsPage> {
                           decoration: BoxDecoration(
                             border: Border(
                               bottom: BorderSide(
-                                color: AppColors.isDarkSelected
-                                    ? AppColors.darkSecondaryColor
-                                    : AppColors.lightPrimaryColor,
+                                color: provider.currentTheme == ThemeMode.light
+                                    ? AppColors.lightPrimaryColor
+                                    : AppColors.darkSecondaryColor,
                                 width:
                                     2.0, // This would be the width of the underline
                               ),
@@ -80,15 +82,19 @@ class _SuraDetailsPageState extends State<SuraDetailsPage> {
                               children: [
                                 Text(
                                   arg.suraName,
-                                  style: AppColors.isDarkSelected
-                                      ? AppThemeData
-                                          .darkTheme.textTheme.titleMedium
-                                      : AppThemeData
-                                          .lightTheme.textTheme.titleMedium,
+                                  style:
+                                      provider.currentTheme == ThemeMode.light
+                                          ? AppThemeData
+                                              .lightTheme.textTheme.titleMedium
+                                          : AppThemeData
+                                              .darkTheme.textTheme.titleMedium,
                                 ),
                                 Icon(
                                   Icons.play_circle,
-                                  color: AppColors.darkSecondaryColor,
+                                  color:
+                                      provider.currentTheme == ThemeMode.light
+                                          ? AppColors.lightPrimaryColor
+                                          : AppColors.darkSecondaryColor,
                                 )
                               ],
                             ),
@@ -101,11 +107,11 @@ class _SuraDetailsPageState extends State<SuraDetailsPage> {
                               alignment: Alignment.center,
                               child: Text(
                                 verses[index],
-                                style: AppColors.isDarkSelected
+                                style: provider.currentTheme == ThemeMode.light
                                     ? AppThemeData
-                                        .darkTheme.textTheme.bodyMedium
+                                        .lightTheme.textTheme.bodyMedium
                                     : AppThemeData
-                                        .lightTheme.textTheme.bodyMedium,
+                                        .darkTheme.textTheme.bodyMedium,
                               ),
                             ),
                             itemCount: verses.length,

@@ -15,7 +15,7 @@ class AppThemeData {
       ),
       bodyMedium: TextStyle(
         color: AppColors.lightTextColor,
-        fontSize: 2,
+        fontSize: 20,
         fontWeight: FontWeight.w400,
       ),
       headlineMedium: TextStyle(
@@ -37,7 +37,8 @@ class AppThemeData {
     ),
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.lightNavBarColor,
-      selectedItemColor: AppColors.lightSecondaryColor,
+      selectedItemColor: AppColors.lightTextColor,
+      selectedIconTheme: const IconThemeData(size: 40),
       unselectedItemColor: AppColors.lightUnSelectedNavBarColor,
     ),
     navigationBarTheme: NavigationBarThemeData(
@@ -45,7 +46,7 @@ class AppThemeData {
       elevation: 3,
       iconTheme: const MaterialStatePropertyAll(
         IconThemeData(
-          size: 40,
+          size: 50,
         ),
       ),
     ),
@@ -96,6 +97,7 @@ class AppThemeData {
     bottomNavigationBarTheme: BottomNavigationBarThemeData(
       backgroundColor: AppColors.darkNavBarColor,
       selectedItemColor: AppColors.darkSecondaryColor,
+      selectedIconTheme: const IconThemeData(size: 40),
       unselectedItemColor: AppColors.darkUnSelectedNavBarColor,
     ),
     navigationBarTheme: NavigationBarThemeData(

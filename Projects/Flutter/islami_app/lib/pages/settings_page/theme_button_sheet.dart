@@ -3,9 +3,14 @@ import 'package:islami_app/provider/settings_provider.dart';
 import 'package:islami_app/utilities/app_colors.dart';
 import 'package:provider/provider.dart';
 
-class ThemeButtomSheet extends StatelessWidget {
+class ThemeButtomSheet extends StatefulWidget {
   const ThemeButtomSheet({super.key});
 
+  @override
+  State<ThemeButtomSheet> createState() => _ThemeButtomSheetState();
+}
+
+class _ThemeButtomSheetState extends State<ThemeButtomSheet> {
   @override
   Widget build(BuildContext context) {
     var provider = Provider.of<SettingProvider>(context);
@@ -20,8 +25,8 @@ class ThemeButtomSheet extends StatelessWidget {
                 AppColors.isDarkSelected = false;
               },
               child: provider.currentTheme == ThemeMode.light
-                  ? getSelectedItem("Ligth")
-                  : getUnSelectedItem("Ligth")),
+                  ? getSelectedItem("Light")
+                  : getUnSelectedItem("Light")),
           const SizedBox(
             height: 30,
           ),
@@ -40,38 +45,46 @@ class ThemeButtomSheet extends StatelessWidget {
   }
 
   getSelectedItem(String theme) {
+    var provider = Provider.of<SettingProvider>(context);
+
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
         Text(
           theme,
           style: TextStyle(
-              color: AppColors.isDarkSelected
-                  ? AppColors.darkSecondaryColor
-                  : AppColors.lightPrimaryColor,
+              color: provider.currentTheme == ThemeMode.light
+                  ? AppColors.lightPrimaryColor
+                  : AppColors.darkSecondaryColor,
               fontSize: 22,
               fontWeight: FontWeight.bold),
         ),
         Icon(
           Icons.check,
           size: 30,
-          color: AppColors.isDarkSelected
-              ? AppColors.darkSecondaryColor
-              : AppColors.lightPrimaryColor,
+          color: provider.currentTheme == ThemeMode.light
+              ? AppColors.lightPrimaryColor
+              : AppColors.darkSecondaryColor,
         ),
       ],
     );
   }
 
   getUnSelectedItem(String theme) {
-    return Text(
-      theme,
-      style: TextStyle(
-          color: AppColors.isDarkSelected
-              ? AppColors.darkSecondaryColor
-              : AppColors.lightPrimaryColor,
-          fontSize: 22,
-          fontWeight: FontWeight.bold),
+    var provider = Provider.of<SettingProvider>(context);
+
+    return Row(
+      children: [
+        Text(
+          theme,
+          style: TextStyle(
+              color: provider.currentTheme == ThemeMode.light
+                  ? AppColors.lightPrimaryColor
+                  : AppColors.darkSecondaryColor,
+              fontSize: 22,
+              fontWeight: FontWeight.bold),
+        ),
+      ],
     );
   }
 }

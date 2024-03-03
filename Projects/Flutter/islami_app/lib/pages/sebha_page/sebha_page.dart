@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:islami_app/utilities/app_colors.dart';
+import 'package:provider/provider.dart';
+
+import '../../provider/settings_provider.dart';
 
 class SebhaPage extends StatefulWidget {
   const SebhaPage({super.key});
@@ -19,6 +22,8 @@ class _SebhaPageState extends State<SebhaPage> {
   ];
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SettingProvider>(context);
+
     return SizedBox(
       width: double.infinity,
       child: Column(
@@ -34,13 +39,14 @@ class _SebhaPageState extends State<SebhaPage> {
                       top: MediaQuery.of(context).size.height * 0.086),
                   child: Transform.rotate(
                       angle: angle,
-                      child: Image.asset(AppColors.isDarkSelected
-                          ? "assets/images/body_sebha_dark.png"
-                          : "assets/images/body_sebha_logo.png")),
+                      child: Image.asset(
+                          provider.currentTheme == ThemeMode.light
+                              ? "assets/images/body_sebha_logo.png"
+                              : "assets/images/body_sebha_dark.png")),
                 ),
-                Image.asset(AppColors.isDarkSelected
-                    ? "assets/images/head_sebha_dark.png"
-                    : "assets/images/head_sebha_logo.png"),
+                Image.asset(provider.currentTheme == ThemeMode.light
+                    ? "assets/images/head_sebha_logo.png"
+                    : "assets/images/head_sebha_dark.png"),
               ],
             ),
           ),
@@ -57,9 +63,9 @@ class _SebhaPageState extends State<SebhaPage> {
               padding: const EdgeInsets.all(20),
               decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(20),
-                  color: AppColors.isDarkSelected
-                      ? AppColors.darkNavBarColor
-                      : AppColors.lightSecondaryColor),
+                  color: provider.currentTheme == ThemeMode.light
+                      ? AppColors.lightSecondaryColor
+                      : AppColors.darkNavBarColor),
               child: Text(
                 counter.toString(),
                 style: Theme.of(context).textTheme.headlineLarge,
@@ -77,9 +83,9 @@ class _SebhaPageState extends State<SebhaPage> {
                 padding: const EdgeInsets.all(20),
                 decoration: BoxDecoration(
                     borderRadius: BorderRadius.circular(40),
-                    color: AppColors.isDarkSelected
-                        ? AppColors.darkSecondaryColor
-                        : AppColors.lightPrimaryColor),
+                    color: provider.currentTheme == ThemeMode.light
+                        ? AppColors.lightPrimaryColor
+                        : AppColors.darkSecondaryColor),
                 child: Text(
                   tasbehatList[index],
                   style: Theme.of(context).textTheme.headlineMedium,

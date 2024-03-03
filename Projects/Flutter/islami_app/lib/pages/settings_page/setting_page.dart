@@ -2,6 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:islami_app/pages/settings_page/languge_button_sheet.dart';
 import 'package:islami_app/pages/settings_page/theme_button_sheet.dart';
 import 'package:islami_app/utilities/app_colors.dart';
+import 'package:provider/provider.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import '../../provider/settings_provider.dart';
 
 class SettingPage extends StatefulWidget {
   const SettingPage({super.key});
@@ -13,6 +17,8 @@ class SettingPage extends StatefulWidget {
 class _SettingPageState extends State<SettingPage> {
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SettingProvider>(context);
+
     return Column(
       children: [
         Padding(
@@ -23,11 +29,11 @@ class _SettingPageState extends State<SettingPage> {
               Padding(
                 padding: const EdgeInsets.only(top: 40.0, bottom: 10.0),
                 child: Text(
-                  "Theme",
+                  AppLocalizations.of(context)!.theme,
                   style: TextStyle(
-                      color: AppColors.isDarkSelected
-                          ? AppColors.darkSecondaryColor
-                          : AppColors.lightTextColor,
+                      color: provider.currentTheme == ThemeMode.light
+                          ? AppColors.lightPrimaryColor
+                          : AppColors.darkSecondaryColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
                 ),
@@ -41,9 +47,9 @@ class _SettingPageState extends State<SettingPage> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(50),
                       border: Border.all(
-                        color: AppColors.isDarkSelected
-                            ? AppColors.darkSecondaryColor
-                            : AppColors.lightTextColor,
+                        color: provider.currentTheme == ThemeMode.light
+                            ? AppColors.lightTextColor
+                            : AppColors.darkSecondaryColor,
                         width: 3,
                       )),
                   child: Row(
@@ -51,13 +57,15 @@ class _SettingPageState extends State<SettingPage> {
                     children: [
                       Padding(
                         padding: const EdgeInsets.only(
-                            top: 10.0, left: 20, bottom: 10),
+                            top: 10.0, left: 20, right: 20, bottom: 10),
                         child: Text(
-                          "Light",
+                          provider.currentTheme == ThemeMode.light
+                              ? "Light"
+                              : "Dark",
                           style: TextStyle(
-                              color: AppColors.isDarkSelected
-                                  ? AppColors.darkSecondaryColor
-                                  : AppColors.lightTextColor,
+                              color: provider.currentTheme == ThemeMode.light
+                                  ? AppColors.lightTextColor
+                                  : AppColors.darkSecondaryColor,
                               fontSize: 20,
                               fontWeight: FontWeight.bold),
                         ),
@@ -66,9 +74,9 @@ class _SettingPageState extends State<SettingPage> {
                         padding: const EdgeInsets.all(20.0),
                         child: Icon(
                           Icons.arrow_drop_down,
-                          color: AppColors.isDarkSelected
-                              ? AppColors.darkSecondaryColor
-                              : AppColors.lightTextColor,
+                          color: provider.currentTheme == ThemeMode.light
+                              ? AppColors.lightTextColor
+                              : AppColors.darkSecondaryColor,
                           size: 30,
                         ),
                       )
@@ -87,11 +95,11 @@ class _SettingPageState extends State<SettingPage> {
               Padding(
                 padding: const EdgeInsets.only(bottom: 10.0),
                 child: Text(
-                  "Language",
+                  AppLocalizations.of(context)!.language,
                   style: TextStyle(
-                      color: AppColors.isDarkSelected
-                          ? AppColors.darkSecondaryColor
-                          : AppColors.lightTextColor,
+                      color: provider.currentTheme == ThemeMode.light
+                          ? AppColors.lightPrimaryColor
+                          : AppColors.darkSecondaryColor,
                       fontWeight: FontWeight.bold,
                       fontSize: 20),
                 ),
@@ -105,9 +113,9 @@ class _SettingPageState extends State<SettingPage> {
                   decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(70),
                       border: Border.all(
-                        color: AppColors.isDarkSelected
-                            ? AppColors.darkSecondaryColor
-                            : AppColors.lightTextColor,
+                        color: provider.currentTheme == ThemeMode.light
+                            ? AppColors.lightTextColor
+                            : AppColors.darkSecondaryColor,
                         width: 3,
                       )),
                   child: Row(
@@ -116,11 +124,13 @@ class _SettingPageState extends State<SettingPage> {
                       Padding(
                         padding: const EdgeInsets.all(20.0),
                         child: Text(
-                          "English",
+                          provider.currentLanguage == "en"
+                              ? "English"
+                              : "Arabic",
                           style: TextStyle(
-                            color: AppColors.isDarkSelected
-                                ? AppColors.darkSecondaryColor
-                                : AppColors.lightTextColor,
+                            color: provider.currentTheme == ThemeMode.light
+                                ? AppColors.lightTextColor
+                                : AppColors.darkSecondaryColor,
                             fontSize: 20,
                             fontWeight: FontWeight.bold,
                           ),
@@ -130,9 +140,9 @@ class _SettingPageState extends State<SettingPage> {
                         padding: const EdgeInsets.all(20.0),
                         child: Icon(
                           Icons.arrow_drop_down,
-                          color: AppColors.isDarkSelected
-                              ? AppColors.darkSecondaryColor
-                              : AppColors.lightTextColor,
+                          color: provider.currentTheme == ThemeMode.light
+                              ? AppColors.lightTextColor
+                              : AppColors.darkSecondaryColor,
                           size: 30,
                         ),
                       )
@@ -150,14 +160,14 @@ class _SettingPageState extends State<SettingPage> {
   showLanguageSheet() {
     showModalBottomSheet(
       context: context,
-      builder: (context) => LangugeButtomSheet(),
+      builder: (context) => const LanguageButtomSheet(),
     );
   }
 
   showThemeSheet() {
     showModalBottomSheet(
       context: context,
-      builder: (context) => ThemeButtomSheet(),
+      builder: (context) => const ThemeButtomSheet(),
     );
   }
 }

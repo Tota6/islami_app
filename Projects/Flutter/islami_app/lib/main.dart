@@ -5,11 +5,10 @@ import 'package:islami_app/pages/quran_page/pages/sura_details.dart';
 import 'package:islami_app/pages/splash_page/splash_page.dart';
 import 'package:islami_app/provider/settings_provider.dart';
 import 'package:provider/provider.dart';
-
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 import 'utilities/app_theme.dart';
 
 void main() {
-  WidgetsBinding widgetsBinding = WidgetsFlutterBinding.ensureInitialized();
   runApp(ChangeNotifierProvider(
     create: (context) => SettingProvider(),
     child: const MyApp(),
@@ -24,9 +23,9 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     var provider = Provider.of<SettingProvider>(context);
     return MaterialApp(
-      // localizationsDelegates: AppLocalization.localDelegates,
-      // supportedLocales: const [Locale("er"), Locale("ar")],
-      // locale: const Locale("ar"),
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: const [Locale("en"), Locale("ar")],
+      locale: Locale(provider.currentLanguage),
       debugShowCheckedModeBanner: false,
       theme: AppThemeData.lightTheme,
       darkTheme: AppThemeData.darkTheme,

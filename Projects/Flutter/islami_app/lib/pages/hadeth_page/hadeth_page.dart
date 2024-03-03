@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:islami_app/pages/hadeth_page/models/hadeth_model.dart';
 import 'package:islami_app/pages/hadeth_page/widgets/hadeth_name_widget.dart';
+import 'package:islami_app/provider/settings_provider.dart';
 import 'package:islami_app/utilities/app_colors.dart';
 import 'package:islami_app/utilities/app_theme.dart';
+import 'package:provider/provider.dart';
 
 class HadethPage extends StatefulWidget {
   const HadethPage({super.key});
@@ -17,6 +19,7 @@ class _HadethPageState extends State<HadethPage> {
 
   @override
   Widget build(BuildContext context) {
+    var provider = Provider.of<SettingProvider>(context);
     if (ahadeth.isEmpty) {
       readFileDetails();
     }
@@ -31,9 +34,9 @@ class _HadethPageState extends State<HadethPage> {
               ),
               Divider(
                 thickness: 3,
-                color: AppColors.isDarkSelected
-                    ? AppColors.darkSecondaryColor
-                    : AppColors.lightPrimaryColor,
+                color: provider.currentTheme == ThemeMode.light
+                    ? AppColors.lightPrimaryColor
+                    : AppColors.darkSecondaryColor,
               ),
               Center(
                 child: Text("احاديث",
@@ -41,9 +44,9 @@ class _HadethPageState extends State<HadethPage> {
               ),
               Divider(
                 thickness: 3,
-                color: AppColors.isDarkSelected
-                    ? AppColors.darkSecondaryColor
-                    : AppColors.lightPrimaryColor,
+                color: provider.currentTheme == ThemeMode.light
+                    ? AppColors.lightPrimaryColor
+                    : AppColors.darkSecondaryColor,
               ),
               const SizedBox(
                 height: 10,

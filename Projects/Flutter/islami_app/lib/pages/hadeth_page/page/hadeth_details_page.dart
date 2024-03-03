@@ -53,10 +53,12 @@ class _HadethDetailsPageState extends State<HadethDetailsPage> {
                           4, // This can be the space you need between text and underline
                     ),
                     margin: const EdgeInsets.symmetric(horizontal: 20),
-                    decoration: const BoxDecoration(
+                    decoration: BoxDecoration(
                       border: Border(
                         bottom: BorderSide(
-                          color: Colors.black,
+                          color: AppColors.isDarkSelected
+                              ? AppColors.darkSecondaryColor
+                              : AppColors.lightPrimaryColor,
                           width:
                               2.0, // This would be the width of the underline
                         ),
@@ -83,10 +85,7 @@ class _HadethDetailsPageState extends State<HadethDetailsPage> {
                         alignment: Alignment.center,
                         child: Text(
                           arg.hadethContent,
-                          style: const TextStyle(
-                            fontWeight: FontWeight.w400,
-                            fontSize: 20,
-                          ),
+                          style: Theme.of(context).textTheme.bodyMedium,
                         ),
                       ),
                       itemCount: 1,
