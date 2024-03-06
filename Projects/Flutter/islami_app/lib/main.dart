@@ -10,7 +10,9 @@ import 'utilities/app_theme.dart';
 
 void main() {
   runApp(ChangeNotifierProvider(
-    create: (context) => SettingProvider(),
+    create: (context) => SettingProvider()
+      ..getlanguage()
+      ..getTheme(),
     child: const MyApp(),
   ));
 }

@@ -4,7 +4,6 @@ import 'package:islami_app/pages/settings_page/theme_button_sheet.dart';
 import 'package:islami_app/utilities/app_colors.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
-
 import '../../provider/settings_provider.dart';
 
 class SettingPage extends StatefulWidget {

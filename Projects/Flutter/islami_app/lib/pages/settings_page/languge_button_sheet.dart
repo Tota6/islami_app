@@ -16,6 +16,18 @@ class _LanguageButtomSheetState extends State<LanguageButtomSheet> {
   Widget build(BuildContext context) {
     var provider = Provider.of<SettingProvider>(context);
     return Container(
+      // color: provider.currentTheme == ThemeMode.light
+      //     ? AppColors.lightPrimaryColor
+      //     : AppColors.darkPrimaryColor,
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+        color: provider.currentTheme == ThemeMode.light
+            ? AppColors.whiteColor
+            : AppColors.darkPrimaryColor,
+      ),
       padding: const EdgeInsets.all(50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -64,7 +76,7 @@ class _LanguageButtomSheetState extends State<LanguageButtomSheet> {
           Icons.check,
           size: 30,
           color: provider.currentTheme == ThemeMode.light
-              ? AppColors.lightPrimaryColor
+              ? AppColors.lightTextColor
               : AppColors.darkSecondaryColor,
         ),
       ],
@@ -80,8 +92,8 @@ class _LanguageButtomSheetState extends State<LanguageButtomSheet> {
           language,
           style: TextStyle(
             color: provider.currentTheme == ThemeMode.light
-                ? AppColors.lightPrimaryColor
-                : AppColors.darkSecondaryColor,
+                ? AppColors.lightTextColor
+                : AppColors.darkSecondaryTextColor,
             fontSize: 22,
             fontWeight: FontWeight.bold,
           ),

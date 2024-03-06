@@ -15,6 +15,15 @@ class _ThemeButtomSheetState extends State<ThemeButtomSheet> {
   Widget build(BuildContext context) {
     var provider = Provider.of<SettingProvider>(context);
     return Container(
+      decoration: BoxDecoration(
+        borderRadius: const BorderRadius.only(
+          topLeft: Radius.circular(30),
+          topRight: Radius.circular(30),
+        ),
+        color: provider.currentTheme == ThemeMode.light
+            ? AppColors.whiteColor
+            : AppColors.darkPrimaryColor,
+      ),
       padding: const EdgeInsets.all(50),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -79,8 +88,8 @@ class _ThemeButtomSheetState extends State<ThemeButtomSheet> {
           theme,
           style: TextStyle(
               color: provider.currentTheme == ThemeMode.light
-                  ? AppColors.lightPrimaryColor
-                  : AppColors.darkSecondaryColor,
+                  ? AppColors.lightTextColor
+                  : AppColors.darkSecondaryTextColor,
               fontSize: 22,
               fontWeight: FontWeight.bold),
         ),
