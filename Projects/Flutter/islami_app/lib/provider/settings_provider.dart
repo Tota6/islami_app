@@ -1,5 +1,3 @@
-import 'dart:ui';
-
 import 'package:flutter/material.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
@@ -23,7 +21,7 @@ class SettingProvider extends ChangeNotifier {
     prefs.setString("language", language);
   }
 
-  Future<void> getlanguage() async {
+  Future<void> getLanguage() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     String? lang = prefs.getString("language");
     if (lang != null) {

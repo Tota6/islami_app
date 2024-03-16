@@ -11,7 +11,7 @@ import 'utilities/app_theme.dart';
 void main() {
   runApp(ChangeNotifierProvider(
     create: (context) => SettingProvider()
-      ..getlanguage()
+      ..getLanguage()
       ..getTheme(),
     child: const MyApp(),
   ));
